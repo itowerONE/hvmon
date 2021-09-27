@@ -1,0 +1,16 @@
+# provisioning/dashboards/all.yml
+# http://docs.grafana.org/administration/provisioning/#datasources
+
+apiVersion: 1
+
+providers:
+
+- name: 'misc'
+  orgId: 1
+  folder: 'misc'
+  type: file
+  disableDeletion: false
+  updateIntervalSeconds: 10 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/misc
+

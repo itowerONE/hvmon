@@ -1,0 +1,5 @@
+- targets:
+    - 'hv-1.one:9100'
+  labels:
+    job: node
+    env: prod

@@ -1,0 +1,22 @@
+# provisioning/datasources/all.yml
+# http://docs.grafana.org/administration/provisioning/#datasources
+
+# config file version
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+#deleteDatasources:
+#  - name: prom1
+#    orgId: 1
+#  - name: DS_PROMETHEUS
+#    orgId: 1
+
+datasources:
+  - name: prometheus                    # name of the datasource
+    type: prometheus                    # type of the data source
+    access: proxy                       # make grafana perform the requests
+    orgId: 1
+    url: http://prometheus:9090         # url of the prom instance
+    isDefault: true
+    editable: true
+

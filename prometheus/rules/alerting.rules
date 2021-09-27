@@ -1,0 +1,35 @@
+groups:
+- name: node.rules
+  rules:
+  - alert: InstanceDown
+    expr: "up == 0"
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."
+      summary: "Instance {{ $labels.instance }} down"
+  - alert: CriticalCPULoad
+    expr: '100 - (avg by (instance) (irate(node_cpu_seconds_total{job="node",mode="idle"}[5m])) * 100) > 96'
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has Critical CPU load for more than 2 minutes."
+      summary: "Instance {{ $labels.instance }} - Critical CPU load"
+  - alert: CriticalRAMUsage
+    expr: '(1 - ((node_memory_MemFree_bytes + node_memory_Buffers_bytes + node_memory_Cached_bytes) / node_memory_MemTotal_bytes)) * 100 > 98'
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      description: "{{ $labels.instance }} has Critical Memory Usage more than 5 minutes."
+      summary: "Instance {{ $labels.instance }} has Critical Memory Usage"
+  - alert: CriticalDiskSpace
+    expr: 'node_filesystem_free_bytes{job="node",filesystem!~"^/run(/|$)",fstype!~"^squashfs"} / node_filesystem_size_bytes{job="node"} < 0.15'
+    for: 4m
+    labels:
+      severity: critical
+    annotations:
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has less than 15% space remaining."
+      summary: "Instance {{ $labels.instance }} - Critical disk space usage"
