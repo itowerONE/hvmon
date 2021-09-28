@@ -13,7 +13,7 @@ $ cd hvmon
 ```
 
 Edit configuration files to meet your needs:
-
+```
   * alertmanager/alertmanager.yml
          smtp_smarthost
          smtp_from
@@ -28,7 +28,7 @@ Edit configuration files to meet your needs:
   * prometheus/file_sd/
          if you need to add more monitored nodes, you should add additional target files in file_sd directory
          also need to add additional IP addresses into extra_hists for prometheus service into docker-compose.yml file.
-
+```
 When configuration is done start up containers with command:
 
 ```
