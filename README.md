@@ -35,6 +35,6 @@ Edit configuration files to meet your needs:
 When configuration is done start up containers with command:
 
 ```
-docker-compose up -d
+$ docker-compose up -d
 ```
 
