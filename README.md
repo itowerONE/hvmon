@@ -13,6 +13,7 @@ $ cd hvmon
 ```
 
 Edit configuration files to meet your needs:
+
 ```
   * alertmanager/alertmanager.yml
          smtp_smarthost
@@ -26,9 +27,11 @@ Edit configuration files to meet your needs:
          set your password for Grafana admin user in ADMIN_PASSWORD property
  
   * prometheus/file_sd/
-         if you need to add more monitored nodes, you should add additional target files in file_sd directory
-         also need to add additional IP addresses into extra_hists for prometheus service into docker-compose.yml file.
+         if you need to add more monitored nodes, you should add additional 
+         target files into file_sd directory, add additional IP addresses 
+         into extra_hosts for prometheus service in docker-compose.yml file as well.
 ```
+
 When configuration is done start up containers with command:
 
 ```
