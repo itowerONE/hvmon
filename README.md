@@ -1,5 +1,7 @@
 ### hvmon
 
+![Overall schema](/images/Overall_schema.png)
+
 Docker-compose file with components needed for harmony validator nodes monitoring.
 Grafana, Prometheus, Node exporter.
 Should be located on separate dedicated host.
