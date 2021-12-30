@@ -1,5 +1,0 @@
-- targets:
-    - 'hvcontrol.one:9100'
-  labels:
-    job: node
-    env: prod

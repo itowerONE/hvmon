@@ -1,6 +1,3 @@
-# TO DO
-# Elasticsearch create index patterns and import Kibana dashboards
-# Migrate DDL tracking, DDLDIFF page, PG-inv page to DBAonDockere
 version: '3'
 # persistent volumes
 volumes:
@@ -10,12 +7,11 @@ volumes:
 services:
 # Prometheus server
   prometheus:
-    image: prom/prometheus:v2.30.0
+    image: prom/prometheus:v2.32.1
     container_name: prometheus
     extra_hosts:
-      - "hv-1.one:IP_ADDRESS_OF_1st_NODE"
-      - "hv-2.one:IP_ADDRESS_OF_2nd_NODE"
-      - "hvcontrol.one:IP_ADDRESS_OF_HVControl_NODE"
+      - "hv-eu.one:IP_ADDRESS_OF_1st_NODE"
+      - "hv-us.one:IP_ADDRESS_OF_2nd_NODE"
     volumes:
       - ./prometheus/:/etc/prometheus/
       - ./prometheus/file_sd/:/etc/prometheus/file_sd/
@@ -34,7 +30,7 @@ services:
     restart: always
 # Alertmanager for Prometheus Server
   alertmanager:
-    image: prom/alertmanager:v0.22.0
+    image: prom/alertmanager:v0.23.0
     container_name: alertmanager
     ports:
       - '9093:9093'
@@ -46,7 +42,7 @@ services:
     restart: always
 # Node-exporter for localhost
   node-exporter:
-    image: prom/node-exporter:v1.2.2
+    image: prom/node-exporter:v1.3.1
     container_name: node-exporter
     volumes:
       - /proc:/host/proc:ro
@@ -57,14 +53,13 @@ services:
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-    ports:
-      - '9100:9100'
+    network_mode: host
     cap_add:
       - SYS_TIME
     restart: always
 # Grafana Server
   grafana:
-    image: grafana/grafana:8.1.5
+    image: grafana/grafana:8.3.3
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana

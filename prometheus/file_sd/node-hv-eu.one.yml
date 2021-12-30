@@ -1,5 +1,5 @@
 - targets:
-    - 'hv-2.one:9100'
+    - 'hv-eu.one:9100'
   labels:
     job: node
     env: prod
