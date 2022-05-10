@@ -7,7 +7,7 @@ volumes:
 services:
 # Prometheus server
   prometheus:
-    image: prom/prometheus:v2.32.1
+    image: prom/prometheus:v2.35.0
     container_name: prometheus
     extra_hosts:
       - "hv-eu.one:IP_ADDRESS_OF_1st_NODE"
@@ -20,7 +20,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus/'
-      - '--storage.tsdb.retention=30d'
+      - '--storage.tsdb.retention.time=30d'
       - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.enable-lifecycle'
